@@ -1,0 +1,16 @@
+version: '1.2'
+
+services:
+  mykuma:
+    image: louislam/uptime-kuma:1
+    container_name: mykuma
+    environment:
+      - UPTIME_KUMA_SSL_KEY=/app/cert/private.key
+      - UPTIME_KUMA_SSL_CERT=/app/cert/public.crt
+      - NODE_EXTRA_CA_CERTS=/app/cert/ca.pem
+    volumes:
+      - ./mykuma-data:/app/data
+      - ./cert:/app/cert
+    ports:
+      - 3001:3001
+    restart: always
